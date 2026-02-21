@@ -1,3 +1,4 @@
+import hashlib
 import os
 import random
 import sys
@@ -58,10 +59,11 @@ def run():
     while True:
         print("\n--- run menu ---")
         print(" 1. random generation")
-        print(" 2. sum_loop")
-        print(" 3. odd even")
-        print(" 4. power")
-        print(" 5. back")
+        print(" 2. sum loop")
+        print(" 3. power loop")
+        print(" 4. odd even")
+        print(" 5. hash mine")
+        print(" 6. back")
 
         choice = input("select run option >> ").strip()
 
@@ -70,10 +72,12 @@ def run():
         elif choice == "2":
             sum_loop()
         elif choice == "3":
-            print("comming soon")
+            power_loop()
         elif choice == "4":
-            print("comming soon")
+            odd_even()
         elif choice == "5":
+            hash_mine()
+        elif choice == "6":
             break
         else:
             print("wrong choice")
@@ -101,9 +105,9 @@ def random_generation():
     print(f"run time: {run_time:.8f} seconds")
     run_time = run_time / answer
     print(f"average time: {run_time:.8f} seconds")
-    print(f"count: {count}")
-    count = count / answer
-    print(f"average count: {count:.8f}")
+    print(f"count: {count:,}")
+    count = count // answer
+    print(f"average count: {count:,}")
 
 
 def sum_loop():
@@ -118,6 +122,44 @@ def sum_loop():
     end_time = time.time()
     run_time = end_time - start_time
     print(f"run time: {run_time:.8f} seconds")
+
+
+def power_loop():
+    print("comming soon")
+    input("\npress enter to go back")
+
+
+def odd_even():
+    print("comming soon")
+    input("\npress enter to go back")
+
+
+def hash_mine():
+    difficulty = int(input("difficulty(0 amount): "))
+    if difficulty <= 0:
+        print("difficulty need bigger than 0")
+        return
+    elif difficulty > 64:
+        print("difficulty need smaller than 64")
+        return
+    elif difficulty > 8:
+        print("i think this is very hard")
+        print("you think it is so slow")
+        print("press Ctrl+C to stop")
+        time.sleep(2)
+    nonce = 0
+    hash_result = hashlib.sha256(str(nonce).encode()).hexdigest()
+    start_time = time.time()
+    while hash_result[:difficulty] != "0" * difficulty:
+        nonce += 1
+        hash_result = hashlib.sha256(str(nonce).encode()).hexdigest()
+    end_time = time.time()
+    run_time = end_time - start_time
+    print(f"run time: {run_time:.8f} seconds")
+    print(f"count: {nonce}")
+    nonce = nonce / run_time
+    print("average count per second: ", nonce)
+    print(f"hash result: {hash_result}")
 
 
 def setting():
