@@ -22,7 +22,7 @@ def menu():
         try:
             width = os.get_terminal_size().columns - 5
         except Exception:
-            width = 40
+            width = 60
 
         print("\n" + "=" * width)
         title = f"NMT Test {version}".center(width)
@@ -164,7 +164,6 @@ def hash_mine():
     print("average count per second: ", nonce)
     print(f"hash result: {hash_result}")
     print(f"data: {data}")
-    print(f"block: {block}")
 
 
 def setting():
@@ -179,7 +178,5 @@ def debug():
 
 if __name__ == "__main__":
     print("welcome to nmt-test")
-    data = str(time.time())
-    print(data)
     time.sleep(0.5)
     menu()
